@@ -9,6 +9,8 @@ npx create-react-app --template typescript .
 
 ## Available Scripts
 
+Styles from [Tailwind React](https://tailwindcss.com/docs/guides/create-react-app)
+
 In the project directory, you can run:
 
 ### `npm start`
