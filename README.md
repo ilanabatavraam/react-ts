@@ -11,6 +11,8 @@ npx create-react-app --template typescript .
 
 Styles from [Tailwind React](https://tailwindcss.com/docs/guides/create-react-app)
 
+APIs from [Fakestoreapi](http://fakestoreapi.com)
+
 In the project directory, you can run:
 
 ### `npm start`
