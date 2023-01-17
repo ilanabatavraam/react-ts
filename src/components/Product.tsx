@@ -6,7 +6,10 @@ interface ProductProps {
 }
 
 export function Product({product}: ProductProps) {
-    const [details, setInfo] = React.useState(false)
+    const [details, setInfo] = React.useState(false);
+    let btnbgClassName = details ? 'bg-blue-400' : 'bg-yellow-400';
+    let btnClasses = ['py-2', 'px-4', 'border', btnbgClassName]
+
 
     return (
         <div
@@ -15,8 +18,17 @@ export function Product({product}: ProductProps) {
             <img src={product.image} alt={product.title} className="w-1/6" />
             <p>{product.title}</p>
             <span className='font-bold'>{product.price}</span>
-            <button className='py-2 px-4 border bg-yellow-400'>Show info</button>
-            {/* <p>{product.description}</p> */}
+            <button
+             className={btnClasses.join(' ')}
+             onClick={() => setInfo(prev => !prev)}
+            >
+                {details ? 'Hide info' : 'Show info'}
+            </button>
+
+            {details && <div>
+                <p>{product.description}</p>
+                <p>Rate: <span style={{fontWeight: 'bold'}}>{product.rating.rate}</span></p>
+            </div>}
         </div>
     )
 }
