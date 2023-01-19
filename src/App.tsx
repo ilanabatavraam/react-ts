@@ -1,36 +1,16 @@
-import axios from 'axios';
-import React, {useEffect, useState} from 'react';
 import { Product } from './components/Product';
-import { products } from './data/products';
-import { Iproduct } from './models';
+import { useProduts } from "./hooks/products";
+import { Loader } from "./components/Loader";
+import { ErrorMsg } from "./components/ErrorMsg";
 
 function App() {
-  const [products, setProducts] = useState<Iproduct[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
 
-  async function fetchProfects() {
-    try {
-      setError('');
-      setLoading(true);
-      const response = await axios.get<Iproduct[]>('https://fakestoreapi.com/products?limit=5');
-      setProducts(response.data);
-      setLoading(false);
-    } catch (e: unknown) {
-      const error = e as Error;
-      setLoading(false);
-      setError(error.message);
-    }
-  }
-
-  useEffect(() => {
-    fetchProfects();
-  }, [])
+  const {loading, error, products} = useProduts();
 
   return (
     <div className='container mx-auto max-w-2xl pt-5'>
-      {loading && <p className="text-center">Loading...</p>}
-      {error && <p className="text-center text-red-600">{error}</p>}
+      {loading && <Loader />}
+      {error && <ErrorMsg error={error} />}
       {products.map(product =>  <Product product={product} key={product.id} />)}
 
       {/* <Product product={products[0]}/>
