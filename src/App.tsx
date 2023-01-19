@@ -2,6 +2,7 @@ import { Product } from './components/Product';
 import { useProduts } from "./hooks/products";
 import { Loader } from "./components/Loader";
 import { ErrorMsg } from "./components/ErrorMsg";
+import { Modal } from "./components/Modal";
 
 function App() {
 
@@ -13,8 +14,7 @@ function App() {
       {error && <ErrorMsg error={error} />}
       {products.map(product =>  <Product product={product} key={product.id} />)}
 
-      {/* <Product product={products[0]}/>
-      <Product product={products[1]}/> */}
+      <Modal />
     </div>
   )
 }
